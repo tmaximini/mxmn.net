@@ -1,0 +1,47 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+import Nav from '../../../components/Nav.astro';
+import Footer from '../../../components/Footer.astro';
+
+const lang = 'en' as const;
+---
+
+<Layout lang={lang}>
+  <Nav lang={lang} />
+  <main class="pt-32 pb-24 px-6">
+    <article class="max-w-3xl mx-auto legal">
+      <h1>Legal Notice</h1>
+      <p class="text-sm text-gray-400">Last updated: March 31, 2026</p>
+
+      <h2>1. Company information</h2>
+      <p>In compliance with Article 10 of Spanish Law 34/2002 (LSSI-CE), the following information is provided about the owner of this website:</p>
+      <ul>
+        <li><strong>Company name:</strong> mxmn technology SL</li>
+        <li><strong>Tax ID (CIF):</strong> ESB26881219</li>
+        <li><strong>Registered address:</strong> Avda. Burjassot 11, 46009 Valencia, Spain</li>
+        <li><strong>Email:</strong> info@mxmn.net</li>
+        <li><strong>Website:</strong> https://mxmn.net</li>
+      </ul>
+
+      <h2>2. Purpose</h2>
+      <p>This legal notice governs the use of and access to the website mxmn.net (the "Website"), owned by mxmn technology SL. By accessing the Website, the user fully and unreservedly accepts all provisions included in this Legal Notice.</p>
+
+      <h2>3. Intellectual property</h2>
+      <p>All content on the Website, including but not limited to text, photographs, graphics, images, icons, technology, software, links, and other audiovisual or audio content, as well as its graphic design and source code, are the intellectual property of mxmn technology SL or of third parties who have authorized their use.</p>
+      <p>Reproduction, distribution, public communication, transformation, or any other use of the Website's content without prior written authorization from mxmn technology SL is prohibited.</p>
+
+      <h2>4. Terms of use</h2>
+      <p>The user agrees to use the Website appropriately and in accordance with the law, this Legal Notice, generally accepted moral standards, and public order.</p>
+
+      <h2>5. Limitation of liability</h2>
+      <p>mxmn technology SL shall not be liable for any damages arising from the use of the Website or the information contained therein, including lack of availability or continuity of the Website's operation.</p>
+
+      <h2>6. Third-party links</h2>
+      <p>The Website may contain links to third-party websites. mxmn technology SL assumes no responsibility for the content, information, or services on those sites.</p>
+
+      <h2>7. Applicable law and jurisdiction</h2>
+      <p>These terms are governed by Spanish law. For the resolution of any dispute, the parties submit to the Courts of the city of Valencia, Spain.</p>
+    </article>
+  </main>
+  <Footer lang={lang} />
+</Layout>

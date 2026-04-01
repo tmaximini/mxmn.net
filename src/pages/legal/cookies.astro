@@ -1,0 +1,59 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Nav from '../../components/Nav.astro';
+import Footer from '../../components/Footer.astro';
+
+const lang = 'es' as const;
+---
+
+<Layout lang={lang}>
+  <Nav lang={lang} />
+  <main class="pt-32 pb-24 px-6">
+    <article class="max-w-3xl mx-auto legal">
+      <h1>Política de Cookies</h1>
+      <p class="text-sm text-gray-400">Última actualización: 31 de marzo de 2026</p>
+
+      <h2>1. ¿Qué son las cookies?</h2>
+      <p>Las cookies son pequeños archivos de texto que se almacenan en su dispositivo cuando visita un sitio web. Se utilizan para recordar sus preferencias, mejorar la experiencia de navegación y recopilar información analítica.</p>
+
+      <h2>2. Cookies que utilizamos</h2>
+      <p>Actualmente, el sitio web mxmn.net utiliza únicamente cookies técnicas estrictamente necesarias para el funcionamiento del sitio:</p>
+      <table>
+        <thead>
+          <tr>
+            <th>Cookie</th>
+            <th>Tipo</th>
+            <th>Finalidad</th>
+            <th>Duración</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Cloudflare (__cf_bm)</td>
+            <td>Técnica</td>
+            <td>Protección contra bots y seguridad del sitio</td>
+            <td>30 minutos</td>
+          </tr>
+        </tbody>
+      </table>
+      <p>Este sitio web <strong>no utiliza</strong> cookies de análisis, publicidad o seguimiento de terceros.</p>
+
+      <h2>3. Control de cookies</h2>
+      <p>Puede configurar su navegador para bloquear o eliminar cookies. A continuación se indican los enlaces a las instrucciones de los navegadores más comunes:</p>
+      <ul>
+        <li><a href="https://support.google.com/chrome/answer/95647" target="_blank" rel="noopener noreferrer">Google Chrome</a></li>
+        <li><a href="https://support.mozilla.org/es/kb/habilitar-y-deshabilitar-cookies-sitios-web-rastrear-preferencias" target="_blank" rel="noopener noreferrer">Mozilla Firefox</a></li>
+        <li><a href="https://support.apple.com/es-es/guide/safari/sfri11471/mac" target="_blank" rel="noopener noreferrer">Safari</a></li>
+        <li><a href="https://support.microsoft.com/es-es/microsoft-edge/eliminar-las-cookies-en-microsoft-edge-63947406-40ac-c3b8-57b9-2a946a29ae09" target="_blank" rel="noopener noreferrer">Microsoft Edge</a></li>
+      </ul>
+      <p>Tenga en cuenta que la desactivación de las cookies técnicas puede afectar al correcto funcionamiento del sitio web.</p>
+
+      <h2>4. Actualización de esta política</h2>
+      <p>mxmn technology SL se reserva el derecho a modificar esta Política de Cookies para adaptarla a novedades legislativas o cambios en el sitio web. Se recomienda revisarla periódicamente.</p>
+
+      <h2>5. Contacto</h2>
+      <p>Si tiene cualquier duda sobre esta Política de Cookies, puede contactarnos en <a href="mailto:info@mxmn.net">info@mxmn.net</a>.</p>
+    </article>
+  </main>
+  <Footer lang={lang} />
+</Layout>

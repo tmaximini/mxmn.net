@@ -1,0 +1,70 @@
+---
+import { type Lang } from '../i18n/ui';
+import { useTranslations } from '../i18n/utils';
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+
+const legalLinks = lang === 'es'
+  ? { notice: '/legal/aviso-legal/', privacy: '/legal/privacidad/', cookies: '/legal/cookies/' }
+  : { notice: '/en/legal/legal-notice/', privacy: '/en/legal/privacy/', cookies: '/en/legal/cookies/' };
+
+const solutionsBase = lang === 'es' ? '/soluciones' : '/en/solutions';
+const solutionAnchors = lang === 'es'
+  ? ['plataformas-empresariales', 'aplicaciones-moviles', 'sistemas-de-gestion', 'comercio-digital', 'soluciones-ia', 'integraciones-apis']
+  : ['enterprise-platforms', 'mobile-applications', 'management-systems', 'digital-commerce', 'ai-solutions', 'integrations-apis'];
+---
+
+<footer class="border-t border-gray-200 py-16 px-6">
+  <div class="max-w-7xl mx-auto grid grid-cols-2 md:grid-cols-5 gap-12">
+    <div class="col-span-2 md:col-span-1">
+      <p class="text-xl font-bold text-gray-900 tracking-tight">mxmn</p>
+      <p class="mt-3 text-sm text-gray-500 leading-relaxed">{t('footer.description')}</p>
+      <p class="mt-3 text-sm text-gray-400">Avda. Burjassot 11<br />46009 Valencia, Spain</p>
+    </div>
+
+    <div>
+      <h4 class="text-sm font-semibold text-gray-900 mb-4">{t('footer.services')}</h4>
+      <ul class="space-y-2.5 text-sm text-gray-500">
+        <li><a href={`${solutionsBase}/#${solutionAnchors[0]}`} class="hover:text-gray-900 transition-colors">{t('services.platforms.title')}</a></li>
+        <li><a href={`${solutionsBase}/#${solutionAnchors[1]}`} class="hover:text-gray-900 transition-colors">{t('services.mobile.title')}</a></li>
+        <li><a href={`${solutionsBase}/#${solutionAnchors[2]}`} class="hover:text-gray-900 transition-colors">{t('services.management.title')}</a></li>
+        <li><a href={`${solutionsBase}/#${solutionAnchors[3]}`} class="hover:text-gray-900 transition-colors">{t('services.commerce.title')}</a></li>
+        <li><a href={`${solutionsBase}/#${solutionAnchors[4]}`} class="hover:text-gray-900 transition-colors">{t('services.ai.title')}</a></li>
+        <li><a href={`${solutionsBase}/#${solutionAnchors[5]}`} class="hover:text-gray-900 transition-colors">{t('services.integrations.title')}</a></li>
+      </ul>
+    </div>
+
+    <div>
+      <h4 class="text-sm font-semibold text-gray-900 mb-4">{t('footer.company')}</h4>
+      <ul class="space-y-2.5 text-sm text-gray-500">
+        <li><a href="#nosotros" class="hover:text-gray-900 transition-colors">{t('nav.about')}</a></li>
+        <li><a href="#contacto" class="hover:text-gray-900 transition-colors">{t('nav.contact')}</a></li>
+      </ul>
+    </div>
+
+    <div>
+      <h4 class="text-sm font-semibold text-gray-900 mb-4">{t('footer.tools')}</h4>
+      <ul class="space-y-2.5 text-sm text-gray-500">
+        <li><a href="https://generar-factura.com/" target="_blank" rel="noopener noreferrer" class="hover:text-gray-900 transition-colors">{t('footer.tools.invoice')}</a></li>
+      </ul>
+    </div>
+
+    <div>
+      <h4 class="text-sm font-semibold text-gray-900 mb-4">{t('footer.legal')}</h4>
+      <ul class="space-y-2.5 text-sm text-gray-500">
+        <li><a href={legalLinks.notice} class="hover:text-gray-900 transition-colors">{t('footer.legal.notice')}</a></li>
+        <li><a href={legalLinks.privacy} class="hover:text-gray-900 transition-colors">{t('footer.legal.privacy')}</a></li>
+        <li><a href={legalLinks.cookies} class="hover:text-gray-900 transition-colors">{t('footer.legal.cookies')}</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="max-w-7xl mx-auto mt-12 pt-8 border-t border-gray-200 flex flex-col sm:flex-row items-center justify-between gap-4">
+    <p class="text-sm text-gray-400">{t('footer.copyright')}</p>
+  </div>
+</footer>

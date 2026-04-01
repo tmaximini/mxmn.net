@@ -1,0 +1,71 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Nav from '../../components/Nav.astro';
+import Footer from '../../components/Footer.astro';
+
+const lang = 'es' as const;
+---
+
+<Layout lang={lang}>
+  <Nav lang={lang} />
+  <main class="pt-32 pb-24 px-6">
+    <article class="max-w-3xl mx-auto legal">
+      <h1>Política de Privacidad</h1>
+      <p class="text-sm text-gray-400">Última actualización: 31 de marzo de 2026</p>
+
+      <h2>1. Responsable del tratamiento</h2>
+      <ul>
+        <li><strong>Responsable:</strong> mxmn technology SL</li>
+        <li><strong>CIF:</strong> ESB26881219</li>
+        <li><strong>Dirección:</strong> Avda. Burjassot 11, 46009 Valencia, España</li>
+        <li><strong>Email:</strong> info@mxmn.net</li>
+      </ul>
+
+      <h2>2. Datos que recopilamos</h2>
+      <p>A través del formulario de contacto del Sitio Web, recopilamos los siguientes datos personales:</p>
+      <ul>
+        <li>Nombre</li>
+        <li>Dirección de correo electrónico</li>
+        <li>Empresa (opcional)</li>
+        <li>Contenido del mensaje</li>
+      </ul>
+
+      <h2>3. Finalidad del tratamiento</h2>
+      <p>Los datos personales recabados serán tratados con las siguientes finalidades:</p>
+      <ul>
+        <li>Atender y gestionar las consultas realizadas a través del formulario de contacto.</li>
+        <li>Mantener la comunicación comercial relacionada con nuestros servicios, siempre que el usuario haya dado su consentimiento.</li>
+      </ul>
+
+      <h2>4. Base legal del tratamiento</h2>
+      <p>La base legal para el tratamiento de sus datos es el consentimiento del interesado, otorgado al enviar el formulario de contacto, así como el interés legítimo del responsable en atender las solicitudes recibidas.</p>
+
+      <h2>5. Plazo de conservación</h2>
+      <p>Los datos personales serán conservados mientras se mantenga la relación comercial o durante el tiempo necesario para cumplir con las obligaciones legales. Una vez finalizada la relación, los datos serán suprimidos conforme a lo dispuesto en la normativa aplicable.</p>
+
+      <h2>6. Destinatarios</h2>
+      <p>Los datos personales podrán ser comunicados a:</p>
+      <ul>
+        <li><strong>Resend:</strong> Proveedor del servicio de envío de correo electrónico, con servidores en Estados Unidos, acogido a las cláusulas contractuales tipo de la Comisión Europea.</li>
+      </ul>
+      <p>No se realizarán cesiones de datos a terceros salvo obligación legal.</p>
+
+      <h2>7. Derechos del interesado</h2>
+      <p>El usuario puede ejercer los siguientes derechos:</p>
+      <ul>
+        <li><strong>Acceso:</strong> Conocer qué datos personales tratamos.</li>
+        <li><strong>Rectificación:</strong> Solicitar la corrección de datos inexactos.</li>
+        <li><strong>Supresión:</strong> Solicitar la eliminación de sus datos.</li>
+        <li><strong>Oposición:</strong> Oponerse al tratamiento de sus datos.</li>
+        <li><strong>Limitación:</strong> Solicitar la limitación del tratamiento.</li>
+        <li><strong>Portabilidad:</strong> Recibir sus datos en un formato estructurado.</li>
+      </ul>
+      <p>Para ejercer estos derechos, puede enviar un correo electrónico a <a href="mailto:info@mxmn.net">info@mxmn.net</a>, indicando el derecho que desea ejercer y acompañando copia de su documento de identidad.</p>
+      <p>Asimismo, tiene derecho a presentar una reclamación ante la Agencia Española de Protección de Datos (<a href="https://www.aepd.es" target="_blank" rel="noopener noreferrer">www.aepd.es</a>).</p>
+
+      <h2>8. Seguridad</h2>
+      <p>mxmn technology SL ha adoptado las medidas técnicas y organizativas necesarias para garantizar la seguridad de los datos personales y evitar su alteración, pérdida, tratamiento o acceso no autorizado.</p>
+    </article>
+  </main>
+  <Footer lang={lang} />
+</Layout>

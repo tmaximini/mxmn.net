@@ -1,0 +1,40 @@
+---
+import { type Lang } from '../i18n/ui';
+import { useTranslations } from '../i18n/utils';
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+
+const clients = [
+  { name: 'Zalando', src: '/Zalando-Logo.wine.svg', height: 'h-auto w-28' },
+  { name: 'Crowdcast', src: '/crowdcast-logo.svg', height: 'h-5' },
+  { name: 'Cannabis Apotheke Frankfurt', src: '/cannabis-apotheke-logo.svg', height: 'h-9' },
+];
+---
+
+<section class="py-16 px-6">
+  <div class="max-w-5xl mx-auto">
+    <p class="text-center text-sm text-gray-400 mb-10 tracking-wide">{t('clients.label')}</p>
+    <div class="flex flex-wrap items-center justify-center gap-x-16 gap-y-8">
+      {clients.map((client) => (
+        <div class="client-logo" title={client.name}>
+          <img src={client.src} alt={client.name} class={client.height} />
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .client-logo img {
+    opacity: 0.35;
+    transition: opacity 0.3s ease;
+  }
+  .client-logo:hover img {
+    opacity: 0.55;
+  }
+</style>

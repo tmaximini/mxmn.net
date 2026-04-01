@@ -1,0 +1,40 @@
+---
+import { type Lang } from '../i18n/ui';
+import { useTranslations } from '../i18n/utils';
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+
+const points = [
+  t('about.point1'),
+  t('about.point2'),
+  t('about.point3'),
+  t('about.point5'),
+  t('about.point6'),
+  t('about.point4'),
+];
+---
+
+<section id="nosotros" class="py-24 px-6">
+  <div class="max-w-3xl mx-auto text-center">
+    <p class="text-accent text-sm font-medium tracking-widest uppercase mb-4">{t('about.label')}</p>
+    <h2 class="text-3xl md:text-4xl font-bold text-gray-900 leading-tight">{t('about.title')}</h2>
+    <p class="mt-6 text-gray-500 leading-relaxed">{t('about.description')}</p>
+    <ul class="mt-8 grid grid-cols-1 md:grid-cols-2 gap-4 text-left max-w-xl mx-auto">
+      {points.map((point) => (
+        <li class="flex items-center gap-3">
+          <div class="w-5 h-5 rounded-full bg-accent/10 flex items-center justify-center shrink-0">
+            <svg class="w-3 h-3 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7" />
+            </svg>
+          </div>
+          <span class="text-gray-700 text-sm font-medium">{point}</span>
+        </li>
+      ))}
+    </ul>
+  </div>
+</section>

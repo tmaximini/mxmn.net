@@ -1,0 +1,57 @@
+---
+import '../styles/global.css';
+import { type Lang } from '../i18n/ui';
+import { useTranslations, getLocalePath } from '../i18n/utils';
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+---
+
+<!doctype html>
+<html lang={lang} class="antialiased">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{t('meta.title')}</title>
+    <meta name="description" content={t('meta.description')} />
+
+    <link rel="canonical" href={`https://mxmn.net${getLocalePath(lang)}`} />
+    <link rel="alternate" hreflang="es" href="https://mxmn.net/" />
+    <link rel="alternate" hreflang="en" href="https://mxmn.net/en/" />
+    <link rel="alternate" hreflang="x-default" href="https://mxmn.net/" />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={t('meta.title')} />
+    <meta property="og:description" content={t('meta.description')} />
+    <meta property="og:url" content={`https://mxmn.net${getLocalePath(lang)}`} />
+    <meta property="og:site_name" content="mxmn technology" />
+    <meta name="twitter:card" content="summary" />
+
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+    <script type="application/ld+json" set:html={JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "name": "mxmn technology SL",
+      "url": "https://mxmn.net",
+      "email": "info@mxmn.net",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Avda. Burjassot 11",
+        "addressLocality": "Valencia",
+        "postalCode": "46009",
+        "addressCountry": "ES"
+      }
+    })} />
+  </head>
+  <body class="bg-white text-gray-900 font-sans">
+    <slot />
+  </body>
+</html>

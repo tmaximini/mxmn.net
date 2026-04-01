@@ -1,0 +1,55 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Nav from '../../components/Nav.astro';
+import Footer from '../../components/Footer.astro';
+import { useTranslations } from '../../i18n/utils';
+
+const lang = 'es' as const;
+const t = useTranslations(lang);
+
+const services = [
+  { id: 'plataformas-empresariales', title: t('services.platforms.title'), description: t('services.platforms.description'), detail: t('services.platforms.detail'), color: '#6366f1', icon: `<path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M2 9.5V4a2 2 0 012-2h16a2 2 0 012 2v5.5M2 9.5h20M2 9.5v8a2 2 0 002 2h16a2 2 0 002-2v-8M8 14h8" />` },
+  { id: 'sistemas-de-gestion', title: t('services.management.title'), description: t('services.management.description'), detail: t('services.management.detail'), color: '#10b981', icon: `<path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4" />` },
+  { id: 'comercio-digital', title: t('services.commerce.title'), description: t('services.commerce.description'), detail: t('services.commerce.detail'), color: '#f59e0b', icon: `<path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.3 2.3c-.5.5-.1 1.4.6 1.4H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 100 4 2 2 0 000-4z" />` },
+  { id: 'soluciones-ia', title: t('services.ai.title'), description: t('services.ai.description'), detail: t('services.ai.detail'), color: '#a855f7', icon: `<path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9.75 3.104v5.714a2.25 2.25 0 01-.659 1.591L5 14.5M9.75 3.104c-.251.023-.501.05-.75.082m.75-.082a24.3 24.3 0 014.5 0m0 0v5.714a2.25 2.25 0 00.659 1.591L19 14.5M14.25 3.104c.251.023.501.05.75.082M5 14.5l-1.43 1.43a2.25 2.25 0 000 3.18l.14.14a2.25 2.25 0 003.18 0L8.5 17.5m-3.5-3h3.75m6.25 0l1.43 1.43a2.25 2.25 0 010 3.18l-.14.14a2.25 2.25 0 01-3.18 0L15.5 17.5m3.5-3h-3.75m-4.5 0v3.5" />` },
+  { id: 'integraciones-apis', title: t('services.integrations.title'), description: t('services.integrations.description'), detail: t('services.integrations.detail'), color: '#f43f5e', icon: `<path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M13.19 8.688a4.5 4.5 0 011.242 7.244l-4.5 4.5a4.5 4.5 0 01-6.364-6.364l1.757-1.757m9.143-3.25a4.5 4.5 0 00-6.364-6.364l-4.5 4.5a4.5 4.5 0 001.242 7.244" />` },
+  { id: 'aplicaciones-moviles', title: t('services.mobile.title'), description: t('services.mobile.description'), detail: t('services.mobile.detail'), color: '#0ea5e9', icon: `<path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M8 2h8a2 2 0 012 2v16a2 2 0 01-2 2H8a2 2 0 01-2-2V4a2 2 0 012-2zm4 17h.01" />` },
+];
+---
+
+<Layout lang={lang}>
+  <Nav lang={lang} />
+  <main class="pt-32 pb-24 px-6">
+    <div class="max-w-3xl mx-auto">
+      <p class="text-accent text-sm font-medium tracking-widest uppercase mb-4">{t('services.label')}</p>
+      <h1 class="text-3xl md:text-4xl font-bold text-gray-900 leading-tight">{t('services.page.title')}</h1>
+      <p class="mt-4 text-gray-500 text-lg">{t('services.page.subtitle')}</p>
+
+      <div class="mt-16 space-y-16">
+        {services.map((s) => (
+          <section id={s.id} class="scroll-mt-24">
+            <div class="flex items-start gap-4">
+              <div class="w-11 h-11 rounded-xl flex items-center justify-center shrink-0 mt-0.5" style={`background: ${s.color}12; box-shadow: 0 0 0 1px ${s.color}25`}>
+                <svg class="w-5 h-5" fill="none" stroke={s.color} viewBox="0 0 24 24">
+                  <Fragment set:html={s.icon} />
+                </svg>
+              </div>
+              <div>
+                <h2 class="text-xl font-semibold text-gray-900">{s.title}</h2>
+                <p class="mt-1 text-sm text-gray-400">{s.description}</p>
+              </div>
+            </div>
+            <p class="mt-4 text-gray-600 leading-relaxed">{s.detail}</p>
+          </section>
+        ))}
+      </div>
+
+      <div class="mt-20 pt-10 border-t border-gray-200">
+        <a href="/#contacto" class="inline-flex px-7 py-3 bg-accent text-white font-medium rounded-full hover:bg-accent-hover transition-all duration-300 hover:scale-[1.02] text-sm">
+          {t('services.page.cta')}
+        </a>
+      </div>
+    </div>
+  </main>
+  <Footer lang={lang} />
+</Layout>

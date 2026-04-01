@@ -1,0 +1,71 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+import Nav from '../../../components/Nav.astro';
+import Footer from '../../../components/Footer.astro';
+
+const lang = 'en' as const;
+---
+
+<Layout lang={lang}>
+  <Nav lang={lang} />
+  <main class="pt-32 pb-24 px-6">
+    <article class="max-w-3xl mx-auto legal">
+      <h1>Privacy Policy</h1>
+      <p class="text-sm text-gray-400">Last updated: March 31, 2026</p>
+
+      <h2>1. Data controller</h2>
+      <ul>
+        <li><strong>Controller:</strong> mxmn technology SL</li>
+        <li><strong>Tax ID (CIF):</strong> ESB26881219</li>
+        <li><strong>Address:</strong> Avda. Burjassot 11, 46009 Valencia, Spain</li>
+        <li><strong>Email:</strong> info@mxmn.net</li>
+      </ul>
+
+      <h2>2. Data we collect</h2>
+      <p>Through the contact form on our Website, we collect the following personal data:</p>
+      <ul>
+        <li>Name</li>
+        <li>Email address</li>
+        <li>Company (optional)</li>
+        <li>Message content</li>
+      </ul>
+
+      <h2>3. Purpose of processing</h2>
+      <p>Personal data collected will be processed for the following purposes:</p>
+      <ul>
+        <li>Responding to and managing inquiries submitted through the contact form.</li>
+        <li>Commercial communications related to our services, provided the user has given consent.</li>
+      </ul>
+
+      <h2>4. Legal basis</h2>
+      <p>The legal basis for processing your data is your consent, given by submitting the contact form, as well as the legitimate interest of the controller in responding to inquiries received.</p>
+
+      <h2>5. Data retention</h2>
+      <p>Personal data will be retained for the duration of the business relationship or as long as necessary to comply with legal obligations. Once the relationship ends, data will be deleted in accordance with applicable regulations.</p>
+
+      <h2>6. Recipients</h2>
+      <p>Personal data may be shared with:</p>
+      <ul>
+        <li><strong>Resend:</strong> Email delivery service provider, with servers in the United States, subject to the European Commission's Standard Contractual Clauses.</li>
+      </ul>
+      <p>No other data transfers to third parties will be made except where legally required.</p>
+
+      <h2>7. Your rights</h2>
+      <p>You may exercise the following rights under the GDPR:</p>
+      <ul>
+        <li><strong>Access:</strong> Know what personal data we process.</li>
+        <li><strong>Rectification:</strong> Request correction of inaccurate data.</li>
+        <li><strong>Erasure:</strong> Request deletion of your data.</li>
+        <li><strong>Objection:</strong> Object to the processing of your data.</li>
+        <li><strong>Restriction:</strong> Request restriction of processing.</li>
+        <li><strong>Portability:</strong> Receive your data in a structured format.</li>
+      </ul>
+      <p>To exercise these rights, email <a href="mailto:info@mxmn.net">info@mxmn.net</a> with a copy of your ID document.</p>
+      <p>You also have the right to file a complaint with the Spanish Data Protection Agency (<a href="https://www.aepd.es" target="_blank" rel="noopener noreferrer">www.aepd.es</a>).</p>
+
+      <h2>8. Security</h2>
+      <p>mxmn technology SL has implemented the necessary technical and organizational measures to ensure the security of personal data.</p>
+    </article>
+  </main>
+  <Footer lang={lang} />
+</Layout>
