@@ -129,10 +129,10 @@ const t = useTranslations(lang);
     const t = cx / w;  // 0..1 left to right
     const u = cy / h;  // 0..1 top to bottom
 
-    // Base: very light with subtle blue shift
-    const r = Math.round(238 + (1 - t) * 12 - u * 6 + rand() * 6);
-    const g = Math.round(240 + (1 - t) * 10 - u * 4 + rand() * 6);
-    const b = Math.round(245 + t * 5 - u * 2 + rand() * 5);
+    // Base: light with subtle blue shift, more contrast
+    const r = Math.round(222 + (1 - t) * 18 - u * 10 + rand() * 12);
+    const g = Math.round(226 + (1 - t) * 14 - u * 8 + rand() * 12);
+    const b = Math.round(235 + t * 10 - u * 5 + rand() * 10);
 
     return `rgb(${Math.min(255, r)}, ${Math.min(255, g)}, ${Math.min(255, b)})`;
   }
@@ -220,7 +220,7 @@ const t = useTranslations(lang);
       ctx.closePath();
       ctx.fillStyle = colors[i];
       ctx.fill();
-      ctx.strokeStyle = 'rgba(220, 225, 235, 0.3)';
+      ctx.strokeStyle = 'rgba(200, 208, 220, 0.4)';
       ctx.lineWidth = 0.5;
       ctx.stroke();
     }
