@@ -21,6 +21,27 @@ export default {
         return new Response(JSON.stringify({ error: 'Missing required fields' }), { status: 400, headers: cors });
       }
 
+      // Verify Turnstile token
+      const token = form.get('cf-turnstile-response')?.toString();
+      if (!token) {
+        return new Response(JSON.stringify({ error: 'Captcha required' }), { status: 400, headers: cors });
+      }
+
+      const turnstileBody = new FormData();
+      turnstileBody.append('secret', env.TURNSTILE_SECRET);
+      turnstileBody.append('response', token);
+      turnstileBody.append('remoteip', request.headers.get('CF-Connecting-IP') || '');
+
+      const turnstileRes = await fetch('https://challenges.cloudflare.com/turnstile/v0/siteverify', {
+        method: 'POST',
+        body: turnstileBody,
+      });
+      const turnstileOutcome = await turnstileRes.json();
+
+      if (!turnstileOutcome.success) {
+        return new Response(JSON.stringify({ error: 'Captcha verification failed' }), { status: 403, headers: cors });
+      }
+
       const res = await fetch('https://api.resend.com/emails', {
         method: 'POST',
         headers: {
@@ -28,8 +49,8 @@ export default {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          from: 'mxmn.net Contact <noreply@maxi.io>',
-          to: ['info@mxmn.net'],
+          from: 'mxmn.net Contact <hello@mail.maxi.io>',
+          to: ['tmaximini@gmail.com'],
           reply_to: email,
           subject: `[mxmn.net] ${name} — ${company}`,
           text: `Name: ${name}\nEmail: ${email}\nCompany: ${company}\n\nMessage:\n${message}`,
@@ -38,7 +59,8 @@ export default {
 
       if (!res.ok) {
         const err = await res.text();
-        return new Response(JSON.stringify({ error: 'Email send failed' }), { status: 500, headers: cors });
+        console.error('Resend error:', res.status, err);
+        return new Response(JSON.stringify({ error: 'Email send failed', detail: err }), { status: 500, headers: cors });
       }
 
       return new Response(JSON.stringify({ ok: true }), { status: 200, headers: cors });
