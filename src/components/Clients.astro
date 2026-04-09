@@ -10,31 +10,33 @@ const { lang } = Astro.props;
 const t = useTranslations(lang);
 
 const clients = [
-  { name: 'Zalando', src: '/Zalando-Logo.wine.svg', height: 'h-auto w-28' },
-  { name: 'Crowdcast', src: '/crowdcast-logo.svg', height: 'h-5' },
-  { name: 'Cannabis Apotheke Frankfurt', src: '/cannabis-apotheke-logo.svg', height: 'h-9' },
+  { name: 'Zalando', src: '/Zalando-Logo.wine.svg', height: 'h-auto w-28', url: 'https://zalando.com' },
+  { name: 'Crowdcast', src: '/crowdcast-logo.svg', height: 'h-5', url: 'https://crowdcast.io' },
+  { name: 'Ada Health', src: '/ada-health-logo.png', height: 'h-7', url: 'https://ada.com', label: 'ada' },
+  { name: 'Cannabis Apotheke Frankfurt', src: '/cannabis-apotheke-logo.svg', height: 'h-9', url: 'https://cannabis-apotheke-frankfurt.de' },
 ];
 ---
 
 <section class="py-16 px-6">
   <div class="max-w-5xl mx-auto">
     <p class="text-center text-sm text-gray-400 mb-10 tracking-wide">{t('clients.label')}</p>
-    <div class="flex flex-wrap items-center justify-center gap-x-16 gap-y-8">
+    <div class="flex flex-wrap items-center justify-center gap-x-12 gap-y-8">
       {clients.map((client) => (
-        <div class="client-logo" title={client.name}>
+        <a href={client.url} target="_blank" rel="noopener noreferrer" class="client-logo flex items-center gap-2" title={client.name}>
           <img src={client.src} alt={client.name} class={client.height} />
-        </div>
+          {client.label && <span class="text-xl font-semibold text-gray-800">{client.label}</span>}
+        </a>
       ))}
     </div>
   </div>
 </section>
 
 <style>
-  .client-logo img {
+  .client-logo {
     opacity: 0.35;
     transition: opacity 0.3s ease;
   }
-  .client-logo:hover img {
+  .client-logo:hover {
     opacity: 0.55;
   }
 </style>
