@@ -5,10 +5,110 @@ import { useTranslations, getLocalePath } from '../i18n/utils';
 
 interface Props {
   lang: Lang;
+  title?: string;
+  description?: string;
+  path?: string;
+  type?: 'website' | 'article';
 }
 
-const { lang } = Astro.props;
+const { lang, title, description, path = '/', type = 'website' } = Astro.props;
 const t = useTranslations(lang);
+
+const pageTitle = title ?? t('meta.title');
+const pageDescription = description ?? t('meta.description');
+const canonicalPath = getLocalePath(lang, path);
+const canonicalUrl = `https://mxmn.net${canonicalPath}`;
+const ogImageUrl = `https://mxmn.net/og.png`;
+
+const esPath = path;
+const enPath = path === '/soluciones/' ? '/solutions/' : path;
+const esUrl = `https://mxmn.net${esPath === '/' ? '/' : esPath}`;
+const enUrl = `https://mxmn.net/en${enPath === '/' ? '/' : enPath}`;
+
+const websiteSchema = {
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "mxmn technology",
+  "url": "https://mxmn.net",
+  "inLanguage": ["es", "en"],
+};
+
+const orgSchema = {
+  "@context": "https://schema.org",
+  "@type": "ProfessionalService",
+  "name": "mxmn technology SL",
+  "url": "https://mxmn.net",
+  "email": "info@mxmn.net",
+  "foundingDate": "2016",
+  "description": t('meta.description'),
+  "image": ogImageUrl,
+  "priceRange": "$$$$",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "Avda. Burjassot 11",
+    "addressLocality": "Valencia",
+    "addressRegion": "Comunidad Valenciana",
+    "postalCode": "46009",
+    "addressCountry": "ES"
+  },
+  "areaServed": {
+    "@type": "GeoCircle",
+    "geoMidpoint": { "@type": "GeoCoordinates", "latitude": 39.4699, "longitude": -0.3763 },
+    "geoRadius": "50000"
+  },
+  "knowsAbout": [
+    "Enterprise Software Development",
+    "Mobile Application Development",
+    "Artificial Intelligence",
+    "E-Commerce Platforms",
+    "API Integration",
+    "ERP Systems"
+  ],
+  // Add social profiles here when available, e.g.: "sameAs": ["https://linkedin.com/company/mxmn"]
+};
+
+const serviceTypes = [
+  { name: "Enterprise Platform Development", desc: "ERP, intranets, and custom business logic systems" },
+  { name: "Mobile Application Development", desc: "Native and cross-platform apps for iOS and Android" },
+  { name: "Management System Development", desc: "Order management, inventory, and workflow automation" },
+  { name: "Digital Commerce Development", desc: "E-commerce platforms, B2B portals, and payment integrations" },
+  { name: "AI-Powered Solutions", desc: "Intelligent automation, data pipelines, and LLM integration" },
+  { name: "API & Systems Integration", desc: "REST/GraphQL APIs, middleware, and cross-platform automation" },
+];
+
+const servicesSchema = serviceTypes.map(s => ({
+  "@context": "https://schema.org",
+  "@type": "Service",
+  "serviceType": s.name,
+  "description": s.desc,
+  "provider": {
+    "@type": "ProfessionalService",
+    "name": "mxmn technology SL",
+    "url": "https://mxmn.net"
+  },
+  "areaServed": "Worldwide"
+}));
+
+const breadcrumbItems: { name: string; url: string }[] = [
+  { name: "Home", url: `https://mxmn.net${getLocalePath(lang)}` }
+];
+if (path !== '/') {
+  const pageName = pageTitle.split('—')[0]?.trim() || pageTitle;
+  breadcrumbItems.push({ name: pageName, url: canonicalUrl });
+}
+
+const breadcrumbSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": breadcrumbItems.map((item, i) => ({
+    "@type": "ListItem",
+    "position": i + 1,
+    "name": item.name,
+    "item": item.url
+  }))
+};
+
+const schemas = [websiteSchema, orgSchema, breadcrumbSchema, ...(path === '/' ? servicesSchema : [])];
 ---
 
 <!doctype html>
@@ -16,20 +116,29 @@ const t = useTranslations(lang);
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>{t('meta.title')}</title>
-    <meta name="description" content={t('meta.description')} />
+    <title>{pageTitle}</title>
+    <meta name="description" content={pageDescription} />
 
-    <link rel="canonical" href={`https://mxmn.net${getLocalePath(lang)}`} />
-    <link rel="alternate" hreflang="es" href="https://mxmn.net/" />
-    <link rel="alternate" hreflang="en" href="https://mxmn.net/en/" />
-    <link rel="alternate" hreflang="x-default" href="https://mxmn.net/" />
+    <link rel="canonical" href={canonicalUrl} />
+    <link rel="alternate" hreflang="es" href={esUrl} />
+    <link rel="alternate" hreflang="en" href={enUrl} />
+    <link rel="alternate" hreflang="x-default" href={esUrl} />
 
-    <meta property="og:type" content="website" />
-    <meta property="og:title" content={t('meta.title')} />
-    <meta property="og:description" content={t('meta.description')} />
-    <meta property="og:url" content={`https://mxmn.net${getLocalePath(lang)}`} />
+    <meta property="og:type" content={type} />
+    <meta property="og:title" content={pageTitle} />
+    <meta property="og:description" content={pageDescription} />
+    <meta property="og:url" content={canonicalUrl} />
     <meta property="og:site_name" content="mxmn technology" />
-    <meta name="twitter:card" content="summary" />
+    <meta property="og:image" content={ogImageUrl} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:locale" content={lang === 'es' ? 'es_ES' : 'en_US'} />
+    <meta property="og:locale:alternate" content={lang === 'es' ? 'en_US' : 'es_ES'} />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={pageTitle} />
+    <meta name="twitter:description" content={pageDescription} />
+    <meta name="twitter:image" content={ogImageUrl} />
 
     <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
@@ -37,20 +146,7 @@ const t = useTranslations(lang);
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
 
-    <script type="application/ld+json" set:html={JSON.stringify({
-      "@context": "https://schema.org",
-      "@type": "Organization",
-      "name": "mxmn technology SL",
-      "url": "https://mxmn.net",
-      "email": "info@mxmn.net",
-      "address": {
-        "@type": "PostalAddress",
-        "streetAddress": "Avda. Burjassot 11",
-        "addressLocality": "Valencia",
-        "postalCode": "46009",
-        "addressCountry": "ES"
-      }
-    })} />
+    <script type="application/ld+json" set:html={JSON.stringify(schemas)} />
   </head>
   <body class="bg-white text-gray-900 font-sans">
     <slot />

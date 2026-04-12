@@ -1,6 +1,13 @@
 export default {
   async fetch(request, env) {
-    if (request.method !== 'POST' || new URL(request.url).pathname !== '/api/contact') {
+    const url = new URL(request.url);
+
+    // Redirect /sitemap.xml to /sitemap-index.xml
+    if (url.pathname === '/sitemap.xml') {
+      return Response.redirect(`${url.origin}/sitemap-index.xml`, 301);
+    }
+
+    if (request.method !== 'POST' || url.pathname !== '/api/contact') {
       return env.ASSETS.fetch(request);
     }
 

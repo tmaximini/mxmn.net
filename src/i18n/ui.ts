@@ -12,6 +12,8 @@ export const ui = {
     // Meta
     'meta.title': 'mxmn technology — Ingeniería de Software en Valencia',
     'meta.description': 'Desarrollamos plataformas empresariales, aplicaciones móviles y soluciones con IA. Sistemas de producción que hacen funcionar negocios.',
+    'meta.solutions.title': 'Soluciones — mxmn technology',
+    'meta.solutions.description': 'Plataformas empresariales, apps móviles, IA, comercio digital, integraciones y sistemas de gestión a medida.',
 
     // Nav
     'nav.services': 'Soluciones',
@@ -112,6 +114,8 @@ export const ui = {
     // Meta
     'meta.title': 'mxmn technology — Software Engineering in Valencia',
     'meta.description': 'We build enterprise platforms, mobile applications, and AI-powered solutions. Production systems that run businesses.',
+    'meta.solutions.title': 'Solutions — mxmn technology',
+    'meta.solutions.description': 'Enterprise platforms, mobile apps, AI, digital commerce, integrations, and custom management systems.',
 
     // Nav
     'nav.services': 'Solutions',
