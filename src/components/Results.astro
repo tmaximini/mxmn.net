@@ -1,0 +1,45 @@
+---
+import { type Lang } from '../i18n/ui';
+import { useTranslations } from '../i18n/utils';
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+
+const stats = [
+  { value: t('results.stat1.value'), label: t('results.stat1.label') },
+  { value: t('results.stat2.value'), label: t('results.stat2.label') },
+  { value: t('results.stat3.value'), label: t('results.stat3.label') },
+  { value: t('results.stat4.value'), label: t('results.stat4.label') },
+];
+---
+
+<section class="relative overflow-hidden bg-ink px-6 py-24 text-paper">
+  <div class="bg-grid-dark absolute inset-0" aria-hidden="true"></div>
+  <div class="relative max-w-6xl mx-auto reveal">
+    <div class="mb-14 flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
+      <div>
+        <p class="mono-label !text-accent">{t('results.label')}</p>
+        <h2 class="mt-4 font-display text-4xl md:text-5xl font-semibold tracking-tight">
+          {t('results.title')}
+        </h2>
+      </div>
+    </div>
+
+    <div class="grid grid-cols-1 gap-x-10 gap-y-12 border-t border-paper/15 pt-12 sm:grid-cols-2 lg:grid-cols-4">
+      {stats.map((stat) => (
+        <div>
+          <p class="font-display text-6xl font-semibold tracking-tight text-paper">
+            {stat.value}
+          </p>
+          <p class="mt-4 font-mono text-[0.72rem] leading-relaxed uppercase tracking-[0.14em] text-paper/50">
+            {stat.label}
+          </p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

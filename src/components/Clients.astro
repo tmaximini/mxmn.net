@@ -17,26 +17,26 @@ const clients = [
 ];
 ---
 
-<section class="py-16 px-6">
-  <div class="max-w-5xl mx-auto">
-    <p class="text-center text-sm text-gray-400 mb-10 tracking-wide">{t('clients.label')}</p>
-    <div class="flex flex-wrap items-center justify-center gap-x-12 gap-y-8">
-      {clients.map((client) => (
-        <a href={client.url} target="_blank" rel="noopener noreferrer" class="client-logo flex items-center gap-2" title={client.name}>
-          <img src={client.src} alt={client.name} class={client.height} />
-          {client.label && <span class="text-xl font-semibold text-gray-800">{client.label}</span>}
-        </a>
-      ))}
-    </div>
+<section class="border-y border-ink/10 bg-sand px-6 py-14">
+  <div class="max-w-6xl mx-auto reveal">
+      <p class="mono-label !text-ink/40 mb-8 text-center">{t('clients.label')}</p>
+      <div class="flex flex-wrap items-center justify-center gap-x-14 gap-y-8">
+        {clients.map((client) => (
+          <a href={client.url} target="_blank" rel="noopener noreferrer" class="client-logo flex items-center gap-2" title={client.name}>
+            <img src={client.src} alt={client.name} class={`${client.height} grayscale`} />
+            {client.label && <span class="text-xl font-semibold text-ink">{client.label}</span>}
+          </a>
+        ))}
+      </div>
   </div>
 </section>
 
 <style>
   .client-logo {
-    opacity: 0.35;
+    opacity: 0.45;
     transition: opacity 0.3s ease;
   }
   .client-logo:hover {
-    opacity: 0.55;
+    opacity: 0.9;
   }
 </style>
